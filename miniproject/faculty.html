@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Login - Talenttrek</title>
+  <style>
+    body {
+      background-image: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ_8AUnFNYwddG_ng5_Xi5yUoBGhDLZD-qVv12paXUN949N3v29');
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      color: #333;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      text-align: center;
+      color: #ffd700;
+    }
+
+    .container h1 {
+  font-size: 3.5rem;
+  margin: 0;
+  text-shadow: 4px 4px 8px #000;
+  color: #007bff; /* Blue Color */
+}
+    .welcome {
+      text-align: center;
+      color: #fff;
+      font-size: 1.8rem;
+      margin: 15px 0 30px 0;
+      font-weight: bold;
+    }
+
+    .box-container {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      max-width: 1100px;
+    }
+
+    .box {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+      padding: 30px 20px;
+      width: 320px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .box h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .box input {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin: 10px auto;
+      display: block;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .box button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      width: 100%;
+      transition: background 0.3s ease;
+    }
+
+    .box button:hover {
+      background-color: #0056b3;
+    }
+
+    .forgot-password {
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+
+    .forgot-password a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .forgot-password a:hover {
+      text-decoration: underline;
+    }
+
+    .signup {
+      text-align: center;
+      margin-top: 20px;
+      color: #333;
+      font-size: 1rem;
+    }
+
+    .signup a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .signup a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="container">
+      <h1>Talenttrek</h1>
+    </div>
+    <div class="welcome">
+      <p>Welcome !</p>
+    </div>
+    <div class="box-container">
+      <div class="box">
+        <h2>Faculty Login</h2>
+<?php if (!empty($error_message)): ?>
+          <p style="color: red; font-weight: bold;"><?php echo $error_message; ?></p>
+        <?php endif; ?>
+        <form action="faculty_dashboard.html" method="GET">
+          <input type="text" name="reg_number" placeholder="Username" required>
+          <input type="password" name="password" placeholder="Password" required>
+          <button type="submit">Login</button>
+        </form>
+        <div class="forgot-password">
+          <a href="faculty_forgotpass.html">Forgot Password?</a>
+        </div>
+        <div class="signup">
+          Don't have an account? <a href="faculty_signup.html">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

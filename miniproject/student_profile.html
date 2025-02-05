@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Top navigation for Change Password and Logout */
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            padding: 15px;
+            background-color: #333;
+            color: white;
+        }
+
+        .navbar a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            color: #f1f1f1;
+        }
+
+        /* Container for profile layout */
+        .container {
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            display: flex;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 70%;
+            padding: 20px;
+        }
+
+        .profile-photo {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 30px;
+        }
+
+        /* Profile Photo - Larger size */
+        .profile-photo img {
+            width: 200px; /* Larger profile photo */
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #4CAF50; /* Green border around the image */
+        }
+
+        /* Hide the input field behind the photo */
+        .profile-photo input[type="file"] {
+            display: none; /* Hide the input element */
+        }
+
+        /* Style for upload button */
+        .profile-photo label {
+            cursor: pointer;
+            color: #4CAF50;
+            background-color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            border: 2px solid #4CAF50;
+            margin-top: 15px;
+        }
+
+        /* Profile Details */
+        .profile-details {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .profile-details label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .profile-details input {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .profile-details button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .profile-details button:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .profile-card {
+                flex-direction: column;
+                width: 90%;
+            }
+
+            .profile-photo img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar for Change Password and Logout -->
+    <div class="navbar">
+        <a href="home.html" id="logout">Logout</a>
+    </div>
+
+    <!-- Profile Container -->
+    <div class="container">
+        <!-- Profile Card -->
+        <div class="profile-card">
+            <!-- Profile Photo -->
+            <div class="profile-photo">
+                <!-- Upload photo button and preview image -->
+                <input type="file" id="photo-upload" accept="image/*" onchange="displayImage(event)">
+                <label for="photo-upload"></label>
+                <div>
+                    <img src="" alt="Profile Photo" id="profile-photo" />
+                </div>
+            </div>
+
+            <!-- Profile Details -->
+            <div class="profile-details">
+                <label for="user-id">User ID:</label>
+                <input type="text" id="user-id" disabled>
+
+                <label for="name">Name:</label>
+                <input type="text" id="name" required>
+
+                <label for="email">Email ID:</label>
+                <input type="email" id="email" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" required>
+
+                <label for="branch">Branch:</label>
+                <input type="text" id="branch" required>
+
+                <label for="college">College Name:</label>
+                <input type="text" id="college" required>
+
+                <button type="button" onclick="saveChanges()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to display the selected image for profile photo upload
+        function displayImage(event) {
+            const photoPreview = document.getElementById('profile-photo');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                photoPreview.src = e.target.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Function to handle Save Changes and navigate
+        function saveChanges() {
+            // You can add form validation here if needed
+            alert('Changes saved successfully!');
+            window.location.href = 'student_view.html';
+        }
+    </script>
+
+</body>
+</html>

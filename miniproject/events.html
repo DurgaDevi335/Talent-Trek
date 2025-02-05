@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Navigation Page</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #f5f7fa;
+        }
+        .header {
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .all-options-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+        .all-options-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .all-option-box {
+            background: #4e54c8;
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .all-option-box:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .all-option-box span {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1> Opportunities</h1>
+    </div>
+    <div class="all-options-wrapper">
+        <div class="all-options-container">
+            <div class="all-option-box" onclick="window.location.href='view.html'">
+                <span>🚀</span>
+                <h4>Hackathons</h4>
+            </div>
+            <div class="all-option-box" onclick="window.location.href='view.html'">
+                <span>📊</span>
+                <h4>Presentations</h4>
+            </div>
+            <div class="all-option-box" onclick="window.location.href='view.html'">
+                <span>📚</span>
+                <h4>Courses</h4>
+            </div>
+            <div class="all-option-box" onclick="window.location.href='view.html'">
+                <span>💼</span>
+                <h4>Internships</h4>
+            </div>
+            <div class="all-option-box" onclick="window.location.href='view.html'">
+                <span>🌟</span>
+                <h4>All</h4>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

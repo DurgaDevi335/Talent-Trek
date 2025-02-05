@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Event Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .dropdown {
+            margin-bottom: 10px;
+        }
+        .dropdown label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .dropdown select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .action-btns {
+            display: flex;
+            gap: 10px;
+        }
+        .action-btns button {
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+        }
+        .edit-btn {
+            background-color: #4CAF50; /* Green for Edit */
+            color: white;
+        }
+        .delete-btn {
+            background-color: #f44336; /* Red for Delete */
+            color: white;
+        }
+        .back-btn {
+            padding: 10px 15px;
+            background-color: #008CBA; /* Blue for Back */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back-btn:hover {
+            background-color: #005f6b; /* Darker blue on hover */
+        }
+        .link-text {
+            color: #0066cc;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Back to Dashboard Button -->
+    <div class="header">
+        <button class="back-btn" onclick="goBackToDashboard()">Back to Dashboard</button>
+        <h2>Event Details</h2>
+    </div>
+
+    <!-- Dropdown for Branch Filter -->
+    <div class="dropdown">
+        <label for="branchSelect"><strong>Branch:</strong></label>
+        <select id="branchSelect" onchange="filterEvents()">
+            <option value="all">All</option>
+            <option value="cse">CSE</option>
+            <option value="cs">CS</option>
+            <option value="ece">ECE</option>
+            <option value="eee">EEE</option>
+            <option value="mech">Mechanical</option>
+            <option value="civil">Civil</option>
+            <option value="ai_ds">AI & DS</option>
+            <option value="ai_ml">AI & ML</option>
+        </select>
+    </div>
+
+    <!-- Event Table -->
+    <table id="eventTable">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Registration Opens</th>
+                <th>Registration Closes</th>
+                <th>Venue</th>
+                <th>Fee</th>
+                <th>Eligibility</th>
+                <th>Branch</th>
+                <th>Link</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Uploaded event details will be dynamically inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        // Sample event data (simulate data from backend)
+        const eventData = [
+            { eventName: "Hackathon", registrationFrom: "2025-01-01", registrationTo: "2025-01-10", venue: "A-block seminar hall", fee: "Free", eligibility: "CSE, CS", branch: "cse", link: "http://example.com/hackathon" },
+            { eventName: "AI Seminar", registrationFrom: "2025-02-01", registrationTo: "2025-02-10", venue: "Room 101", fee: "$20", eligibility: "AI & DS, AI & ML", branch: "ai_ds", link: "http://example.com/ai-seminar" },
+            { eventName: "Robotics Workshop", registrationFrom: "2025-03-01", registrationTo: "2025-03-05", venue: "B-block seminar hall", fee: "$50", eligibility: "ECE, Mechanical", branch: "ece", link: "http://example.com/robotics-workshop" }
+        ];
+
+        // Populate table with event data
+        function populateTable(data) {
+            const tableBody = document.getElementById('eventTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = ''; // Clear existing table rows
+
+            data.forEach(event => {
+                const row = tableBody.insertRow();
+                row.innerHTML = `
+                    <td>${event.eventName}</td>
+                    <td>${event.registrationFrom}</td>
+                    <td>${event.registrationTo}</td>
+                    <td>${event.venue}</td>
+                    <td>${event.fee}</td>
+                    <td>${event.eligibility}</td>
+                    <td>${event.branch}</td>
+                    <td><a href="${event.link}" class="link-text" target="_blank">${event.link}</a></td>
+                    <td class="action-btns">
+                        <button class="edit-btn" onclick="editEvent('${event.eventName}')">Edit</button>
+                        <button class="delete-btn" onclick="deleteEvent('${event.eventName}')">Delete</button>
+                    </td>
+                `;
+            });
+        }
+
+        // Filter events based on branch selection
+        function filterEvents() {
+            const selectedBranch = document.getElementById('branchSelect').value;
+
+            if (selectedBranch === 'all') {
+                populateTable(eventData); // Show all events
+            } else {
+                const filteredEvents = eventData.filter(event => event.branch === selectedBranch);
+                populateTable(filteredEvents);
+            }
+        }
+
+        // Edit event function
+        function editEvent(eventName) {
+            const event = eventData.find(e => e.eventName === eventName);
+            if (event) {
+                const url = `upload1.html?eventName=${encodeURIComponent(event.eventName)}&link=${encodeURIComponent(event.link)}`;
+                window.location.href = url;
+            }
+        }
+
+        // Delete event function
+        function deleteEvent(eventName) {
+            const index = eventData.findIndex(event => event.eventName === eventName);
+            if (index !== -1) {
+                eventData.splice(index, 1);
+                populateTable(eventData);
+            }
+        }
+
+        // Back to Dashboard button functionality
+        function goBackToDashboard() {
+            window.location.href = 'faculty_dashboard.html';
+        }
+
+        // Initial table population
+        populateTable(eventData);
+    </script>
+
+</body>
+</html>

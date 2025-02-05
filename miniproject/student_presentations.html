@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+    <title>View Event Details</title>
+    <meta name="google" content="notranslate">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        /* Header Styling */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            margin: 0;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-icons a {
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+
+        .profile-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .profile-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #f9f9f9;
+            min-width: 120px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .profile-content a {
+            color: black;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .profile-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .profile-dropdown:hover .profile-content {
+            display: block;
+        }
+
+        /* Dropdown Filter Styling */
+        .dropdown {
+            margin-bottom: 10px;
+        }
+
+        .dropdown label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .dropdown select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with Navigation Icons -->
+    <div class="header">
+        <h2>Event Details</h2>
+        <div class="nav-icons">
+            <a href="home.html">🏠 Home</a>
+            <div class="profile-dropdown">
+                <button class="profile-btn">👤 Profile ▼</button>
+                <div class="profile-content">
+                    <a href="student_profile.html">Profile</a>
+                    <a href="student_settings.html">Settings</a>
+                    <a href="home.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dropdown for Branch Filter -->
+    <div class="dropdown">
+        <label for="branchSelect"><strong>Branch:</strong></label>
+        <select id="branchSelect" onchange="filterEvents()">
+            <option value="all">All</option>
+            <option value="cse">CSE</option>
+            <option value="cs">CS</option>
+            <option value="ece">ECE</option>
+            <option value="eee">EEE</option>
+            <option value="mech">Mechanical</option>
+            <option value="civil">Civil</option>
+            <option value="ai_ds">AI & DS</option>
+            <option value="ai_ml">AI & ML</option>
+        </select>
+    </div>
+
+    <!-- Event Table -->
+    <table id="eventTable">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Registration Opens</th>
+                <th>Registration Closes</th>
+                <th>Venue</th>
+                <th>Fee</th>
+                <th>Eligibility</th>
+                <th>Branch</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Uploaded event details will be dynamically inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        const eventData = [
+            { eventName: "Hackathon", registrationFrom: "2024-06-01", registrationTo: "2024-06-10", venue: "Hall 1", fee: "$10", eligibility: "Open", branch: "cse" },
+            { eventName: "AI Workshop", registrationFrom: "2024-07-05", registrationTo: "2024-07-12", venue: "Lab 3", fee: "$15", eligibility: "Advanced", branch: "ai_ds" },
+            { eventName: "Robotics", registrationFrom: "2024-08-01", registrationTo: "2024-08-05", venue: "Lab 1", fee: "$20", eligibility: "Intermediate", branch: "ece" }
+        ];
+
+        function populateTable(data) {
+            const tableBody = document.getElementById('eventTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = '';
+
+            data.forEach(event => {
+                const row = tableBody.insertRow();
+                row.innerHTML = `
+                    <td>${event.eventName}</td>
+                    <td>${event.registrationFrom}</td>
+                    <td>${event.registrationTo}</td>
+                    <td>${event.venue}</td>
+                    <td>${event.fee}</td>
+                    <td>${event.eligibility}</td>
+                    <td>${event.branch}</td>
+                `;
+            });
+        }
+
+        function filterEvents() {
+            const selectedBranch = document.getElementById('branchSelect').value;
+
+            if (selectedBranch === 'all') {
+                populateTable(eventData);
+            } else {
+                const filteredEvents = eventData.filter(event => event.branch === selectedBranch);
+                populateTable(filteredEvents);
+            }
+        }
+
+        populateTable(eventData);
+    </script>
+</body>
+</html>

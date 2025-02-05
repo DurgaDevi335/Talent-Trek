@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP - TalentTrek</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS7ZS5AClGyD7cwnZvWYjD3yPmFXlr0o9Mvl-Ubd_H0qkAzCIdd') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .otp-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            text-align: center;
+        }
+
+        .otp-container h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .otp-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .otp-container button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .otp-container button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="otp-container">
+            <h2>Verify OTP</h2>
+            <form action="faculty_resetpassword.html" method="GET">
+                <input type="text" name="otp" placeholder="Enter OTP" required>
+                <button type="submit">Verify OTP</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

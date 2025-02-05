@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Sign-Up Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: url('https://static.vecteezy.com/system/resources/previews/002/944/807/original/group-business-employee-people-work-together-in-office-vector.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            padding-left: 250px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        }
+
+        .signup-box {
+            align-items: left;
+            background: linear-gradient(135deg, #2196F3, #90CAF9); /* Blue Gradient */
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: #fff; /* White Color for Logo */
+        }
+
+        h2 {
+            margin: 10px 0;
+            color: #333; /* Dark Gray for headings */
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.9rem;
+            color: #455A64; /* Gray Color for Labels */
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #90CAF9; /* Light Blue Border */
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #f1f8e9; /* Light Gray Background */
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background: #2196F3; /* Blue Color */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #1976D2; /* Darker Blue on Hover */
+        }
+
+        .login-link {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #333; /* Dark Gray for Text */
+        }
+
+        .login-link a {
+            color: #2196F3; /* Blue Color */
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="signup-box">
+            <div class="logo">
+                <h1>TALENTTREK</h1>
+            </div>
+            <h2>Create Your Account</h2>
+            <form action="student_events.html" method="GET">
+                <div class="input-group">
+                    <label for="reg_number">Registration Number</label>
+                    <input type="text" name="reg_number" placeholder="Enter your Registration Number" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" placeholder="Create a password" required>
+                </div>
+                <div class="input-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="btn">Sign Up</button>
+                <p class="login-link">Already have an account? <a href="home.html">Log in</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

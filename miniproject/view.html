@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Event Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .dropdown {
+            margin-bottom: 10px;
+        }
+        .dropdown label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .dropdown select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        a {
+            color: #008CBA;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Back Button -->
+    <button onclick="window.location.href='faculty_dashboard.html'">Back to Dashboard</button>
+
+    <!-- Dropdown for Branch Filter -->
+    <div class="header">
+        <h2>Event Details</h2>
+        <div class="dropdown">
+            <label for="branchSelect"><strong>Branch:</strong></label>
+            <select id="branchSelect" onchange="filterEvents()">
+                <option value="all">All</option>
+                <option value="cse">CSE</option>
+                <option value="cs">CS</option>
+                <option value="ece">ECE</option>
+                <option value="eee">EEE</option>
+                <option value="mech">Mechanical</option>
+                <option value="civil">Civil</option>
+                <option value="ai_ds">AI & DS</option>
+                <option value="ai_ml">AI & ML</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Event Table -->
+    <table id="eventTable">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Registration Opens</th>
+                <th>Registration Closes</th>
+                <th>Venue</th>
+                <th>Fee</th>
+                <th>Eligibility</th>
+                <th>Branch</th>
+                <th>Link</th> <!-- New Link Column -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Uploaded event details will be dynamically inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        // Sample event data (simulate data from backend)
+        const eventData = [
+            { eventName: 'Hackathon 2024', registrationFrom: '2024-01-01', registrationTo: '2024-01-30', venue: 'Hall 1', fee: 100, eligibility: 'Open to all', branch: 'cse', link: 'http://example.com/hackathon' },
+            { eventName: 'AI Workshop', registrationFrom: '2024-02-01', registrationTo: '2024-02-10', venue: 'Lab 2', fee: 50, eligibility: 'CSE and CS', branch: 'cs', link: 'http://example.com/ai-workshop' },
+            { eventName: 'Machine Learning Talk', registrationFrom: '2024-02-15', registrationTo: '2024-02-20', venue: 'Auditorium', fee: 0, eligibility: 'Open to all', branch: 'ai_ml', link: 'http://example.com/ml-talk' }
+        ];
+
+        // Populate table with event data
+        function populateTable(data) {
+            const tableBody = document.getElementById('eventTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = ''; // Clear existing table rows
+
+            data.forEach(event => {
+                const row = tableBody.insertRow();
+                row.innerHTML = `
+                    <td>${event.eventName}</td>
+                    <td>${event.registrationFrom}</td>
+                    <td>${event.registrationTo}</td>
+                    <td>${event.venue}</td>
+                    <td>${event.fee}</td>
+                    <td>${event.eligibility}</td>
+                    <td>${event.branch}</td>
+                    <td><a href="${event.link}" target="_blank">${event.link}</a></td> <!-- Display the Link directly -->
+                `;
+            });
+        }
+
+        // Filter events based on branch selection
+        function filterEvents() {
+            const selectedBranch = document.getElementById('branchSelect').value;
+
+            if (selectedBranch === 'all') {
+                populateTable(eventData); // Show all events
+            } else {
+                const filteredEvents = eventData.filter(event => event.branch === selectedBranch);
+                populateTable(filteredEvents);
+            }
+        }
+
+        // Initial table population
+        populateTable(eventData);
+    </script>
+
+</body>
+</html>
